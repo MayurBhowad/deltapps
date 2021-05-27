@@ -1,0 +1,129 @@
+
+
+.product-oparation * {
+    box-sizing: border-box; 
+}
+.product-oparation:before, .product-oparation:after {
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+}
+
+body{
+    background: #E5E5E5;
+    display: flex;
+    justify-content: center;
+}
+
+
+@font-face {
+    font-family: 'gilroyregular';
+    src: url('./fonts/gilroy-regular.woff') format("woff");
+}
+@font-face {
+    font-family: 'gilroylight';
+    src: url('./fonts/gilroy-light.woff') format("woff");
+}
+@font-face {
+    font-family: 'gilroymedium';
+    src: url('./fonts/gilroy-medium.woff') format("woff");
+}
+
+h3{
+    font-family: "gilroymedium";
+}
+
+.product-oparation{
+    /* flex-direction: column; */
+    width: 20rem;
+    height: 20rem;
+}
+
+/* .product-form{
+    display: flex;
+    
+} */
+
+.product-oparation .form-control{
+    width: 100%;
+    margin: 1.5rem 0;
+}
+
+
+.product-oparation label{
+    font-family: "gilroylight";
+    margin-left: 10px;
+}
+
+.product-oparation input{
+    width: 100%;
+    height: 2rem;
+    
+    font-family: "gilroyregular";
+    
+    padding: 0 1rem;
+    
+    border: 2px solid #B8B8B8;
+    border-radius: .6rem;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.product-oparation input::-webkit-outer-spin-button,
+.product-oparation input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.product-oparationinput[type=number] {
+  -moz-appearance: textfield;
+}
+
+.product-oparation button{
+    width: 100%;
+    height: 2rem;
+    padding: 0 1rem;
+
+    background: #486ff0;
+    color: #fff;
+
+    border: 2px solid #B8B8B8;
+    border-radius: .6rem;
+}
+
+.product-oparation button:hover{
+    cursor: pointer;
+}
+
+.product-oparation .links{
+    margin-top: 10px;
+
+    width: 100%;
+    text-align: center;
+}
+
+.product-oparation .link {
+    text-decoration: none;
+}
+
+.product-oparation .link:active {
+    color: inherit;
+    background-color: transparent;
+    text-decoration: none;
+  }
+
+.product-oparation .btns{
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-oparation .btns .btn{
+    width: 7rem;
+}
+
+.product-oparation .btn-yes{
+    background: green;
+}
+.product-oparation .btn-no{
+    background: red;
+}

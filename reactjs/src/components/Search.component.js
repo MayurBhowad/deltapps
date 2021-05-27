@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import ProductList from './search/ProductList';
 import SearchBar from './search/SearchBar'
 import '../styles/Search.css';
@@ -33,6 +34,9 @@ const Search = (props) => {
 
     return (
         <>
+            <div className="links">
+                <Link className="link" to="/addproduct">Add products</Link>
+            </div>
             <SearchBar
                 keyword={input}
                 setKeyword={updateInput}
