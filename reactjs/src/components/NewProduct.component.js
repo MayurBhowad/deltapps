@@ -102,7 +102,7 @@ function NewProduct() {
                         <form onSubmit={updateProduct}>
                             <button className="btn btn-yes">Yes</button>
                         </form>
-                        <button className="btn btn-no" onClick={e => { setEdit(false) }}>No</button>
+                        <button className="btn btn-no" onClick={e => { setEdit(false); }}>No</button>
                     </div>
                 </div>
             ) : null}
