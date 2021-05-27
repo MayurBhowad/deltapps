@@ -14,7 +14,7 @@ const Search = (props) => {
     }
 
     const fetchData = async () => {
-        await axios.post('http://localhost:4000/deltapps/searchproduct', data)
+        await axios.post('/deltapps/searchproduct', data)
             .then(ress => {
                 setProductList(ress.data)
             })
