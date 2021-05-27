@@ -19,9 +19,9 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useFindAndModif
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => {
-    res.send('welcome to deltapps!')
-})
+// app.get('/', (req, res) => {
+//     res.send('welcome to deltapps!')
+// })
 
 app.get('/data', (req, res) => {
     Product.search('pa', (err, data) => {
