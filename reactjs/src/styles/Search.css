@@ -1,0 +1,236 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background: #E5E5E5;
+}
+
+@font-face {
+    font-family: 'gilroyregular';
+    src: url('./fonts/gilroy-regular.woff') format("woff");
+}
+@font-face {
+    font-family: 'gilroylight';
+    src: url('./fonts/gilroy-light.woff') format("woff");
+}
+@font-face {
+    font-family: 'gilroymedium';
+    src: url('./fonts/gilroy-medium.woff') format("woff");
+}
+
+.App{
+    margin: 2rem;
+}
+
+@media only screen and (max-width:600px ) {
+    .App{
+        margin:  1rem;
+    }
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+}
+
+.search-wrapper{
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+
+}
+
+.location-wrapper{
+    display: flex;
+}
+
+.location{
+    background: #fff;
+    border-left: 1px solid #B8B8B8;
+    border-top: 1px solid #B8B8B8;
+    border-bottom: 1px solid #B8B8B8;
+    border-radius: 10px 0 0 10px;
+    padding: 1.2rem;
+    height: 19px;
+}
+
+.word-wrapper{
+    display: flex;
+}
+
+.search-icon{
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-top: 1px solid #B8B8B8;
+    border-bottom: 1px solid #B8B8B8;
+}
+
+.search-png{
+    border-left: 2px solid #000;
+    margin-left: 15px;
+    padding: 4px 0 4px 15px;
+    height: 15px;
+}
+
+.selectOne {
+    width: 7rem;
+    height: 34px;
+    border: none;
+    border-top: 1px solid #B8B8B8;
+    border-bottom: 1px solid #B8B8B8;
+    
+    height: 100%;
+
+    
+}
+
+option{
+    font-family: "gilroymedium";
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+
+}
+
+
+.barStyle {
+    width: 20rem;
+    border: none;
+    padding: 1rem;
+    border-radius:  0 10px 10px 0;
+    border-top: 1px solid #B8B8B8;
+    border-right: 1px solid #B8B8B8;
+    border-bottom: 1px solid #B8B8B8;
+
+    font-family: "gilroylight";
+    font-size: 15px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+
+    
+}
+
+.barStyle2{
+    border: none;
+    /* padding: 1rem; */
+    border-radius:  0 10px 10px 0;
+    border-top: 1px solid #B8B8B8;
+    border-right: 1px solid #B8B8B8;
+    border-bottom: 1px solid #B8B8B8;
+
+    font-family: "gilroylight";
+    font-size: 15px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+
+}
+
+.selectOne, input{
+    outline: none;   
+}
+
+@media only screen and (max-width: 600px) {
+
+    .location{
+        padding: 1.2rem .5rem;
+    }
+    .selectOne{
+        width: auto;
+    }
+
+    .barStyle{
+        width: auto;
+    }
+
+}
+
+
+/* Product list */
+.products{
+    display: flex;
+    justify-content: center;
+}
+.product-list{
+    width: 19rem;
+    min-height: 1rem;
+    max-height: 20rem;
+    background: #fff;
+
+
+    margin-top: 20px;
+    margin-left: 12rem;
+    animation: fromSearch 0.5s;
+
+    border: 1px solid #C4C4C4;
+    border-radius:  10px;
+
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+hr{
+    border: 1px solid rgba(0, 0, 0, 0.14);
+}
+
+.product-list::-webkit-scrollbar {
+    width: 15px;
+  }
+
+  .product-list::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 30px;
+  }
+  .product-list::-webkit-scrollbar-thumb {
+    background: #979797; 
+    border-radius: 30px;
+    
+  }
+  .product-list::-webkit-scrollbar-thumb:hover {
+    background: gray; 
+  }
+
+.item{
+    padding: 13px 22px;
+}
+
+.item h4{
+    font-family: "gilroymedium";
+    font-size: 13px;
+    color: #000;
+    
+    margin: 0;
+    padding: 0;
+}
+
+.item p{
+    font-family: "gilroyregular";
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.62);
+    margin-top: -12px;
+}
+
+@media only screen and (max-width: 600px) {
+    .products{
+        display: block;
+    }
+    .product-list{
+        width: 100%;
+        max-height: 100%;
+
+        margin-left: 0;
+    }
+}
+
+
+/* animations */
+@keyframes fromSearch {
+    0% {height: 0; margin-top: 0;}
+    100% {height: 20rem; margin-top: 20px;}
+  }
