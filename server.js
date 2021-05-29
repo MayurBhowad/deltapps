@@ -11,6 +11,8 @@ const PORT = process.env.PORT || 4000;
 
 const Product = require('./models/Products.model');
 
+const productRouter = require('./routes/Product.routes');
+
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
     .then(() => console.log('database connected'))
     .catch(e => console.log(e));
@@ -30,35 +32,7 @@ app.get('/data', (req, res) => {
     res.send('welcome to deltapps!')
 })
 
-app.post('/deltapps/addproduct', (req, res) => {
-    const { name, store_count, price } = req.body;
-    const newProduct = new Product({ name, store_count, price });
-
-    Product.findOne({ name: name }).then(product => {
-        if (product) return res.status(301).json({ exist: true })
-        newProduct.save()
-            .then(() => res.status(201).json({ success: true, message: 'Product added successfully!' }))
-            .catch(e => console.log(e))
-    })
-})
-
-app.post('/deltapps/updateproduct', (req, res) => {
-    const { name, store_count, price } = req.body;
-
-    Product.findOneAndUpdate({ name: name }, { $set: { store_count, price } }, { new: true }, (err, product) => {
-        if (err) return res.status(301).json({ success: false });
-        return res.status(200).json({ success: true });
-    })
-})
-
-app.post('/deltapps/searchproduct', (req, res) => {
-    const { string } = req.body;
-
-    Product.search(string, (err, data) => {
-        if (err) console.log(err);
-        return res.status(200).json(data);
-    })
-})
+app.use('/store', productRouter)
 
 if (process.env.NODE_ENV === 'production') {
     //set static folder

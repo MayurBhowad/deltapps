@@ -2,32 +2,46 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
-    name: {
+    store_name: {
         type: String
     },
-    store_count: {
-        type: String
-    },
-    price: {
-        type: String
-    },
+    product: [{
+        product_name: {
+            type: String
+        },
+        product_price: {
+            type: String
+        }
+    }],
 })
 
-productSchema.index({ name: "text" })
+productSchema.index({ "product.product_name": "text" })
 
 productSchema.statics = {
+    // searchPartial: function (q, callback) {
+    //     return this.find({
+    //         $or: [
+    //             { "product.product_name": new RegExp(q, "gi") }
+    //         ]
+    //     }, callback);
+    // },
     searchPartial: function (q, callback) {
-        return this.find({
-            $or: [
-                { "name": new RegExp(q, "gi") }
-            ]
-        }, callback);
+        return this.aggregate([
+            { $unwind: "$product" },
+            { $match: { "product.product_name": new RegExp(q, "gi") } }]
+            , callback);
     },
 
+    // searchFull: function (q, callback) {
+    //     return this.find({
+    //         $text: { $search: q, $caseSensitive: false }
+    //     }, callback)
+    // },
     searchFull: function (q, callback) {
-        return this.find({
-            $text: { $search: q, $caseSensitive: false }
-        }, callback)
+        return this.aggregate([
+            { $unwind: "$product" },
+            { $match: { "product.product_name": new RegExp(q, "gi") } }]
+            , callback);
     },
 
     search: function (q, callback) {

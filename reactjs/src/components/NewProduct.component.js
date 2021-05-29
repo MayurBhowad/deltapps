@@ -7,39 +7,40 @@ function NewProduct() {
     const [edit, setEdit] = useState(false);
     const [success, setSuccess] = useState(false);
 
-    const [name, setName] = useState('');
-    const [store_count, setStore_count] = useState('');
+    const [storeName, setStoreName] = useState('');
+    const [productName, setProductName] = useState('');
     const [price, setPrice] = useState('');
 
     const resetInput = () => {
-        setName('')
-        setStore_count('');
+        setStoreName('')
+        setProductName('');
         setPrice('');
     }
 
     const AddProduct = async e => {
         e.preventDefault();
-        const newProduct = { name, store_count, price };
-        await axios.post('/deltapps/addproduct', newProduct)
+        const newProduct = { store_name: storeName, product_name: productName, product_price: price };
+        // console.log(newProduct);
+        await axios.post('/store/deltapps/addproduct', newProduct)
             .then(ress => {
-                console.log(ress);
+                // console.log(ress);
                 if (ress.data) {
                     resetInput();
                     setSuccess(true)
                 }
             })
             .catch(e => {
-                if (e.response.data.exist) {
+                if (e.response.data.found) {
                     setEdit(true)
                 }
-                console.log(e);
+                // console.log(e.response.data);
             })
     }
 
     const updateProduct = async e => {
         e.preventDefault();
-        const productDetails = { name, store_count, price };
-        await axios.post('/deltapps/updateproduct', productDetails)
+        const productDetails = { store_name: storeName, product_name: productName, product_price: price };
+        await axios.post('/store/deltapps/updateproduct', productDetails)
             .then(ress => {
                 if (ress.data.success) {
                     setEdit(false);
@@ -57,25 +58,25 @@ function NewProduct() {
 
                 <form onSubmit={AddProduct} className="product-form" >
                     <div className="form-control">
-                        <label htmlFor="name">Name: </label>
+                        <label htmlFor="name">Store Name: </label>
                         <input
                             type="text"
-                            id="name"
-                            value={name}
-                            placeholder="Product name"
+                            id="store_name"
+                            value={storeName}
+                            placeholder="Store name"
                             className="form-input"
-                            onChange={e => setName(e.target.value)}
+                            onChange={e => setStoreName(e.target.value)}
                         />
                     </div>
                     <div className="form-control">
-                        <label htmlFor="store">Available Store Counts: </label>
+                        <label htmlFor="store">Product Name</label>
                         <input
-                            type="number"
-                            id="store"
-                            value={store_count}
-                            placeholder="Available Count"
+                            type="text"
+                            id="product_name"
+                            value={productName}
+                            placeholder="Product Name"
                             className="form-input"
-                            onChange={e => setStore_count(e.target.value)}
+                            onChange={e => setProductName(e.target.value)}
                         />
                     </div>
                     <div className="form-control">
@@ -97,7 +98,7 @@ function NewProduct() {
             </div>
             {edit ? (
                 <div className="editConfirmation">
-                    <p>Product already exist! Do you want to update?</p>
+                    <p>Product already exist! Do you want to update its Price?</p>
                     <div className="btns">
                         <form onSubmit={updateProduct}>
                             <button className="btn btn-yes">Yes</button>
